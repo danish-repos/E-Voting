@@ -1,15 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white"
     tools:context=".HomeActivity">
 
     <!-- Header Layout -->
     <LinearLayout
         android:id="@+id/headerLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
@@ -38,137 +39,151 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headerLayout"
-        android:layout_marginTop="11dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/scPlace"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_weight="2"
             app:iconifiedByDefault="false"
             app:queryHint="Enter your place" />
 
         <Button
             android:id="@+id/btnSearchPlace"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
             android:drawableEnd="@drawable/dropdown_icon"
             android:drawablePadding="8dp"
             android:text="@string/election_type"
             android:textSize="13sp" />
+
     </LinearLayout>
 
-    <!-- Floating Action Buttons and Labels -->
+    <!-- Three Floating Icons -->
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ONGOING" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UP COMING" />
+
+    </com.google.android.material.tabs.TabLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:baselineAligned="false">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Home Button -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"/>
+
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp">
+            android:baselineAligned="false">
 
-            <ImageButton
-                android:id="@+id/imgBtnHome"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:clickable="true"
-                android:src="@drawable/home_icon"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/return_to_home_button"
-                android:focusable="true"
-                android:elevation="0dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Home Button -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="@string/home"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <!-- Vote Button -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center">
+                <ImageButton
+                    android:id="@+id/imgBtnHome"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/return_to_home_button"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:src="@drawable/home_icon" />
 
-            <ImageButton
-                android:id="@+id/imgBtnVote"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:clickable="true"
-                android:src="@drawable/vote_icon"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/vote_list"
-                android:focusable="true"
-                android:elevation="0dp"
-                android:padding="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/home"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Vote Button -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/vote"
-                android:textColor="@android:color/black"    />
-        </LinearLayout>
+                android:layout_margin="15dp"
 
-        <!-- Profile Button -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="right"
-            tools:ignore="RtlHardcoded">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/imgBtnProfile"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:clickable="true"
-                android:src="@drawable/person_icon"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/profile"
-                android:focusable="true"
-                android:elevation="0dp" />
+                <ImageButton
+                    android:id="@+id/imgBtnVote"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/vote_list"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:src="@drawable/vote_icon" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vote"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <!-- Profile Button -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/profile"
-                android:textColor="@android:color/black" />
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded">
+
+                <ImageButton
+                    android:id="@+id/imgBtnProfile"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="@string/profile"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:src="@drawable/person_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
