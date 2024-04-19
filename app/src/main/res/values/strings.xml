@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">E-Voting</string>
+    <string name="your_vote_your_choice">Your Vote, Your Choice</string>
+    <string name="register">Register</string>
+    <string name="textRegisterInfo">Ready to exercise your civil rights from anywhere at anytime without having to go through stress</string>
+    <string name="next">Next</string>
+    <string name="a_register_logo">a register logo</string>
+    <string name="vote">Vote</string>
+    <string name="VoteInfo">Vote for the candidate that you can believe can get the job done at your own convenience anonymously</string>
+    <string name="TermsAndConditions"><![CDATA[Before signing up, you have to agree to the <b>Terms &amp; Privacy Policy</b>]]></string>
+    <string name="lets_s_get_started">Let\'s get started!</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="you_can_t_leave_anything_empty">You can\'t leave anything empty!</string>
+    <string name="shortPassword">Password can\'t be less then 8 characters!</string>
+    <string name="you_have_to_agree_to_the_terms_and_conditions_first">You have to agree to the terms and conditions first!</string>
+    <string name="not_a_valid_email">Not a valid Email</string>
+    <string name="textAtHomeScreen">Your Vote, Your Choice</string>
+    <string name="profile">Profile</string>
+    <string name="vote_list">Vote List</string>
+    <string name="return_to_home_button">Return to Home Button</string>
+    <string name="election_type">Election Type</string>
+    <string name="home">Home</string>
+</resources>

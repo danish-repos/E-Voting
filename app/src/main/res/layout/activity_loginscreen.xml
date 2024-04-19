@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".LogInActivity">
+
+    <!-- Heading Text -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/lets_s_get_started"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Three Input Fields -->
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/enter_your_email"
+        android:drawableStart="@drawable/mail_icon"
+        android:drawablePadding="8dp"
+        android:textColorHint="@color/LightGrey"
+        android:textColor="@color/black"
+        android:minHeight="48dp"
+        android:autofillHints="emailAddress"
+        android:inputType= "textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/enter_your_name"
+        android:textColorHint="@color/LightGrey"
+        android:drawableStart="@drawable/person_icon"
+        android:drawablePadding="8dp"
+        android:textColor="@color/black"
+        android:autofillHints="name"
+        android:minHeight="48dp"
+        android:inputType="text" />
+
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:textColorHint="@color/LightGrey"
+        android:drawableStart="@drawable/lock_icon"
+        android:drawablePadding="8dp"
+        android:hint="@string/password"
+        android:textColor="@color/black"
+        android:autofillHints="password"
+        android:minHeight="48dp"
+        android:inputType="textPassword" />
+
+    <!-- Radio Button and Button for the bottom of the screen-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+        <RadioButton
+            android:id="@+id/btnTermsAndConditions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnSignIn"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/sign_in" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
