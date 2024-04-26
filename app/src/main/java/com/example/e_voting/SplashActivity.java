@@ -19,8 +19,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent mainIntent = new Intent(SplashActivity.this, HomeActivity.class);
-                // temporary shifting to the HomeActivity
+                Intent mainIntent = new Intent(SplashActivity.this, InstructionsActivity.class);
 
                 startActivity(mainIntent);
                 finish();

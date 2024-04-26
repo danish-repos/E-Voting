@@ -4,186 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".HomeActivity">
+    tools:context=".MainActivity">
 
-    <!-- Header Layout -->
-    <LinearLayout
-        android:id="@+id/headerLayout"
+    <!-- TabLayout with four tabs -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        tools:ignore="UseCompoundDrawables">
+        android:layout_weight="8"/>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:srcCompat="@drawable/vote_splash" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/textAtHomeScreen"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- SearchView and Election Type Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/scPlace"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:iconifiedByDefault="false"
-            app:queryHint="Enter your place" />
-
-        <Button
-            android:id="@+id/btnSearchPlace"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:drawableEnd="@drawable/dropdown_icon"
-            android:drawablePadding="8dp"
-            android:text="@string/election_type"
-            android:textSize="13sp" />
-
-    </LinearLayout>
-
-    <!-- Three Floating Icons -->
     <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ONGOING" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UP COMING" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"/>
-
-        <LinearLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:baselineAligned="false">
+            app:tabMode="fixed">
 
-            <!-- Home Button -->
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:icon="@drawable/home"
+                android:text="Home" />
 
-                <ImageButton
-                    android:id="@+id/imgBtnHome"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="true"
-                    android:contentDescription="@string/return_to_home_button"
-                    android:elevation="0dp"
-                    android:focusable="true"
-                    android:src="@drawable/home_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="@string/home"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
-
-            <!-- Vote Button -->
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:icon="@drawable/vote"
+                android:text="Vote" />
 
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imgBtnVote"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="true"
-                    android:contentDescription="@string/vote_list"
-                    android:elevation="0dp"
-                    android:focusable="true"
-                    android:padding="5dp"
-                    android:src="@drawable/vote_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vote"
-                    android:textColor="@android:color/black" />
-
-            </LinearLayout>
-
-            <!-- Profile Button -->
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:orientation="vertical"
-                tools:ignore="RtlHardcoded">
+                android:icon="@drawable/news"
+                android:text="News" />
 
-                <ImageButton
-                    android:id="@+id/imgBtnProfile"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="true"
-                    android:contentDescription="@string/profile"
-                    android:elevation="0dp"
-                    android:focusable="true"
-                    android:src="@drawable/person_icon" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/person"
+                android:text="Profile" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/profile"
-                    android:textColor="@android:color/black" />
+        </com.google.android.material.tabs.TabLayout>
 
-            </LinearLayout>
 
-        </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -6,8 +6,6 @@
     <string name="next">Next</string>
     <string name="a_register_logo">a register logo</string>
     <string name="vote">Vote</string>
-    <string name="VoteInfo">Vote for the candidate that you can believe can get the job done at your own convenience anonymously</string>
-    <string name="TermsAndConditions"><![CDATA[Before signing up, you have to agree to the <b>Terms &amp; Privacy Policy</b>]]></string>
     <string name="lets_s_get_started">Let\'s get started!</string>
     <string name="enter_your_email">Enter your Email</string>
     <string name="enter_your_name">Enter your Name</string>
@@ -23,4 +21,6 @@
     <string name="return_to_home_button">Return to Home Button</string>
     <string name="election_type">Election Type</string>
     <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

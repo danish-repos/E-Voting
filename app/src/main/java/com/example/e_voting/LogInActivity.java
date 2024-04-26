@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +16,14 @@ public class LogInActivity extends AppCompatActivity {
     EditText etName;
     EditText etPassword;
     RadioButton btnTermsAndConditions;
-    Button btnSignIn;
+    Button btnSignIn, btnRegister;
 
     int radioButton = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginscreen);
+        setContentView(R.layout.activity_login);
 
         init();
 
@@ -38,53 +37,54 @@ public class LogInActivity extends AppCompatActivity {
                 password = etPassword.getText().toString().trim();
 
 
-                // some constraints checking
-
-                // in case user left something empty
                 if(email.length() == 0 || name.length() == 0 || password.length()==0)
                 {
                     Toast.makeText(getApplicationContext(), R.string.you_can_t_leave_anything_empty,Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // email text doesn't have the "@" in it
                 if(!email.contains("@"))
                 {
                     Toast.makeText(getApplicationContext(), R.string.not_a_valid_email,Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // in case user type a password which is less then 8 characters long
-                if(password.length() < 8)
-                {
-                    Toast.makeText(getApplicationContext(),R.string.shortPassword,Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                // if the radio button is not checked
                 if (radioButton == 0)
                 {
                     Toast.makeText(getApplicationContext(), R.string.you_have_to_agree_to_the_terms_and_conditions_first ,Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
+                Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                 startActivity(intent);
 
-                // to allow the cycle to repeat
                 radioButton = 0;
 
+                int result = loginUser(email,password);
+                if (result <= 0)
+                {
+                    Toast.makeText(LogInActivity.this, "Invalid mail or password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                startActivity(new Intent(LogInActivity.this, MainActivity.class));
                 finish();
 
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LogInActivity.this,RegisterActivity.class));
             }
         });
 
         btnTermsAndConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 radioButton = 1;
-
             }
         });
     }
@@ -96,9 +96,17 @@ public class LogInActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
 
         btnTermsAndConditions = findViewById(R.id.btnTermsAndConditions);
-        // to bold some certain text, i used html tags
-        btnTermsAndConditions.setText(Html.fromHtml(getString(R.string.TermsAndConditions)));
-
         btnSignIn = findViewById(R.id.btnSignIn);
+        btnRegister = findViewById(R.id.btnRegister);
+    }
+
+    private int loginUser(String email,String password){
+        MyDatabase database = new MyDatabase(this);
+
+        database.open();
+        int result = database.loginUser(email,password);
+        database.close();
+
+        return result;
     }
 }

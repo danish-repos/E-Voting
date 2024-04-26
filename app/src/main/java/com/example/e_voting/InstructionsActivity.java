@@ -3,18 +3,18 @@ package com.example.e_voting;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.os.Bundle;
 
 public class InstructionsActivity extends AppCompatActivity {
 
-    ImageView imgRegister;
-    TextView tvRegisterInfo;
-    TextView tvRegister;
-    Button btnNext;
+    FragmentManager fragmentManager;
+    Fragment pageOne, pageTwo;
+    Button btnNext, btnNext2;
     int clickCount = 0;
 
     @Override
@@ -24,38 +24,50 @@ public class InstructionsActivity extends AppCompatActivity {
 
         init();
 
+        if(isUserLoggedIn()){
+            startActivity(new Intent(InstructionsActivity.this, MainActivity.class));
+            finish();
+        }
+
+        fragmentManager.beginTransaction().hide(pageTwo).commit();
+
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCount++;
-
-                if (clickCount == 1) {
-
-                    // On the first click, change texts and pics
-                    tvRegister.setText(R.string.vote);
-                    tvRegisterInfo.setText(R.string.VoteInfo);
-                    imgRegister.setImageResource(R.drawable.vote_splash);
-
-                } else if (clickCount == 2) {
-
-                    // On the second click, start the loginScreen activity
-                    Intent intent = new Intent(InstructionsActivity.this, LogInActivity.class);
-                    startActivity(intent);
-
-                    // Reset clickCount to allow the cycle to repeat
-                    clickCount = 0;
-
-                    // Finish the Instructions Activity
-                    finish();
+                fragmentManager.beginTransaction().show(pageTwo).hide(pageOne).commit();
                 }
+
+        });
+
+        btnNext2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(InstructionsActivity.this,LogInActivity.class));
             }
         });
+
     }
 
     private void init() {
-        imgRegister = findViewById(R.id.imgRegister);
-        tvRegister = findViewById(R.id.tvRegister);
-        tvRegisterInfo = findViewById(R.id.tvRegisterInfo);
-        btnNext = findViewById(R.id.btnNext);
+
+        fragmentManager = getSupportFragmentManager();
+        pageOne = fragmentManager.findFragmentById(R.id.instructions1);
+        pageTwo = fragmentManager.findFragmentById(R.id.instructions2);
+
+        btnNext = pageOne.requireView().findViewById(R.id.btnNext);
+        btnNext2 = pageTwo.requireView().findViewById(R.id.btnNext2);
+
+    }
+
+    private boolean isUserLoggedIn(){
+        MyDatabase database = new MyDatabase(this);
+
+        database.open();
+        boolean temp = database.isUserLoggedIn();
+        database.close();
+
+        return temp;
+
     }
 }
