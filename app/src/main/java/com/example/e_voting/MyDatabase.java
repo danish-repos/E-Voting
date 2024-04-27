@@ -78,7 +78,6 @@ public class MyDatabase {
 
     }
 
-
     public int loginUser(String email, String password) {
         ContentValues cv = new ContentValues();
         cv.put(KEY_ISLOGIN, 1);

@@ -15,7 +15,6 @@ public class InstructionsActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     Fragment pageOne, pageTwo;
     Button btnNext, btnNext2;
-    int clickCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class MainTabAdapter extends FragmentStateAdapter {
+public class HomeTabAdapter extends FragmentStateAdapter {
 
-    public MainTabAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public HomeTabAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
     @NonNull
@@ -17,29 +17,21 @@ public class MainTabAdapter extends FragmentStateAdapter {
         {
             case 0:
             {
-                return new HomeTab();
+                return new OnGoingTab();
             }
             case 1:
             {
-                return new VoteTab();
-            }
-            case 2:
-            {
-                return new NewsTab();
-            }
-            case 3:
-            {
-                return new ProfileTab();
+                return new UpComingTab();
             }
             default:
             {
-                return new HomeTab();
+                return null;
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 }
