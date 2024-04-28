@@ -33,7 +33,7 @@ public class MainTabAdapter extends FragmentStateAdapter {
             }
             default:
             {
-                return new HomeTab();
+                return null;
             }
         }
     }
