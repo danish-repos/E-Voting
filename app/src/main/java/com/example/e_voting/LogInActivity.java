@@ -43,13 +43,6 @@ public class LogInActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(!email.contains("@"))
-                {
-                    Toast.makeText(getApplicationContext(), R.string.not_a_valid_email,Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
                 if (radioButton == 0)
                 {
                     Toast.makeText(getApplicationContext(), R.string.you_have_to_agree_to_the_terms_and_conditions_first ,Toast.LENGTH_SHORT).show();

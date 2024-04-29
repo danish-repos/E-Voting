@@ -1,15 +1,18 @@
 package com.example.e_voting;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -26,8 +29,10 @@ public class HomeTab extends Fragment {
     TabLayout tabLayoutHome;
     ViewPager2 viewPagerHome;
 
+
+
     public HomeTab() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -58,7 +63,34 @@ public class HomeTab extends Fragment {
         btnSearchPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(getContext(), btnSearchPlace);
+
+                popup.getMenuInflater().inflate(R.menu.dropdown_menu, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        int itemId = item.getItemId();
+
+                        if (itemId == R.id.option1) {
+                            Toast.makeText(getContext(), "Option 1 selected", Toast.LENGTH_SHORT).show();
+                            return true;
+                        } else if (itemId == R.id.option2) {
+                            Toast.makeText(getContext(), "Option 2 selected", Toast.LENGTH_SHORT).show();
+                            return true;
+                        } else if (itemId == R.id.option3) {
+                            Toast.makeText(getContext(), "Option 3 selected", Toast.LENGTH_SHORT).show();
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    }
+                });
+
+                popup.show();
             }
+
         });
 
         tabLayoutHome.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
