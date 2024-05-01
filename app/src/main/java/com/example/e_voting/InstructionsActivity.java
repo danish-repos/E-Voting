@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class InstructionsActivity extends AppCompatActivity {
 
@@ -16,17 +22,13 @@ public class InstructionsActivity extends AppCompatActivity {
     Fragment pageOne, pageTwo;
     Button btnNext, btnNext2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
 
         init();
-
-        if(isUserLoggedIn()){
-            startActivity(new Intent(InstructionsActivity.this, MainActivity.class));
-            finish();
-        }
 
         fragmentManager.beginTransaction().hide(pageTwo).commit();
 
@@ -43,6 +45,7 @@ public class InstructionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(InstructionsActivity.this,LogInActivity.class));
+                finish();
             }
         });
 
@@ -59,14 +62,6 @@ public class InstructionsActivity extends AppCompatActivity {
 
     }
 
-    private boolean isUserLoggedIn(){
-        MyDatabase database = new MyDatabase(this);
 
-        database.open();
-        boolean temp = database.isUserLoggedIn();
-        database.close();
 
-        return temp;
-
-    }
 }

@@ -9,10 +9,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Firebase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -35,9 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         init();
-
-
-
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -87,8 +95,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Select your gender", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                registerUser(firstName,lastName,email,password,userGender);
 
+                RegisterUser(firstName, lastName, email , password, userGender);
                 finish();
             }
         });
@@ -117,11 +125,61 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private  void registerUser(String firstName, String lastName, String email, String password, String gender){
-        MyDatabase database = new MyDatabase(this);
+    public void RegisterUser(String firstName, String lastName, String email, String password, String gender){
 
-        database.open();
-        database.insertLogin(firstName,lastName,email,password,gender);
-        database.close();
+        FirebaseDatabase.getInstance().getReference().child("Users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        boolean present = false;
+
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            if (email.equals(data.child("Email").getValue(String.class))) {
+
+                                present = true;
+                                break;
+                            }
+                        }
+
+                        if (!present) {
+
+                            HashMap<String, Object> singleLogin = new HashMap<>();
+                            singleLogin.put("FirstName", firstName);
+                            singleLogin.put("LastName", lastName);
+                            singleLogin.put("Email", email);
+                            singleLogin.put("Password", password);
+                            singleLogin.put("Gender", gender);
+                            singleLogin.put("isLogin", false);
+                            singleLogin.put("isAdmin", false);
+
+                            FirebaseDatabase.getInstance().getReference().child("Users").push().setValue(singleLogin)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(RegisterActivity.this, "Added!", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
+
+                        }
+                        else {
+                            Toast.makeText( RegisterActivity.this, "Already Present!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 }

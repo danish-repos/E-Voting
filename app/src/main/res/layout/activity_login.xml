@@ -38,21 +38,7 @@
         android:autofillHints="emailAddress"
         android:inputType= "textEmailAddress" />
 
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        android:hint="@string/enter_your_name"
-        android:textColorHint="@color/LightGrey"
-        android:drawableStart="@drawable/person"
-        android:drawablePadding="8dp"
-        android:textColor="@color/black"
-        android:autofillHints="name"
-        android:minHeight="48dp"
-        android:inputType="text" />
+    \
 
 
     <EditText
@@ -97,14 +83,14 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_margin="15dp"
-                    app:srcCompat="@drawable/home" />
+                    app:srcCompat="@drawable/google" />
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_margin="15dp"
-                    app:srcCompat="@drawable/home" />
+                    app:srcCompat="@drawable/facebook" />
 
             </LinearLayout>
 
@@ -120,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Beofre Signing in, you have to agree to the Terms and Conditions first."
+                    android:text="Before Signing in, you have to agree to the Terms and Conditions first."
                     android:textColor="@color/black" />
 
                 <Button
