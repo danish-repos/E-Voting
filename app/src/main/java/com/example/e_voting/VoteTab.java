@@ -22,6 +22,14 @@ public class VoteTab extends Fragment {
     public VoteTab() {
         // Required empty public constructor
     }
+
+public class VoteTab extends Fragment {
+
+    public VoteTab() {
+        // Required empty public constructor
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

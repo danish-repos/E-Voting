@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProfileTab">
+    tools:context=".VoterID_Verification">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="PROFILE"
+            android:text="VOTER ID VERIFICATION"
             android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -28,59 +28,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvSave_Changes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:text="Save"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/DarkPrimaryColor"
+        <ImageView
+            android:id="@+id/ivIdVerification_BackArrow"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:src="@drawable/arrowback"
+            android:layout_marginTop="5dp"
             android:clickable="true"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            app:cardCornerRadius="500dp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/male_profile" />
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
-        android:id="@+id/tvEditProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
+        android:text="VERIFY YOUR DETAILS"
         android:gravity="center"
-        android:textColor="@color/DarkPrimaryColor"
-        android:clickable="true"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your details as per the government database"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="confirm your credentials before proceeding"
+        android:gravity="center"
+        android:textSize="12sp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -89,15 +72,13 @@
         android:layout_marginTop="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etFirstName_Profile"
+            android:id="@+id/etVoterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="First name"
+            android:hint="Name"
             android:inputType="text"
             android:textSize="14sp" />
 
@@ -118,16 +99,14 @@
         android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etLastName_Profile"
+            android:id="@+id/etVoterDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="Last name"
-            android:inputType="text"
+            android:hint="Date of Birth"
+            android:inputType="date"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -147,16 +126,14 @@
         android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etVoterIdNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:hint="Voter Id Number"
+            android:inputType="number"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -176,16 +153,14 @@
         android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etOldPassword_Profile"
+            android:id="@+id/etVoterAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/lock"
-            android:drawablePadding="8dp"
-            android:hint="Old Password"
-            android:inputType="textPassword"
+            android:hint="Address"
+            android:inputType="text"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -205,16 +180,15 @@
         android:layout_marginTop="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNewPassword_Profile"
+            android:id="@+id/etZipcode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/lock"
-            android:drawablePadding="8dp"
-            android:hint="New Password"
-            android:inputType="textPassword"
+
+            android:hint="Zipcode"
+            android:inputType="number"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -228,15 +202,32 @@
         android:background="#0C0C0C"
         android:text="TextView" />
 
-    <Button
-        android:id="@+id/btnLogout_Profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:backgroundTint="@color/DarkPrimaryColor"
-        android:text="Logout"
-        android:textSize="14sp"
 
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/DarkPrimaryColor"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btnConfirm_VoterID_Verification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/DarkPrimaryColor"
+                android:text="Confirm" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>
