@@ -15,13 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -32,6 +35,7 @@ public class AdminActivity extends AppCompatActivity {
     Button btnAddCandidate;
 
     TextView tvAdmin;
+    CandidateAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,6 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminActivity.this, AddCandidateActivity.class));
-
 
             }
         });
@@ -105,11 +108,35 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        myAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myAdapter.stopListening();
+    }
+
     private void init(){
-        rvCandidateList = findViewById(R.id.rvCandidates);
+        rvCandidateList = findViewById(R.id.rvCandidateList);
         btnAddCandidate = findViewById(R.id.btnAddCandidate);
 
         tvAdmin = findViewById(R.id.tvAdmin);
+
+        rvCandidateList.setLayoutManager(new LinearLayoutManager(this));
+        rvCandidateList.setHasFixedSize(true);
+
+        Query query = FirebaseDatabase.getInstance().getReference().child("Candidates");
+
+        FirebaseRecyclerOptions<Candidate> options =
+                new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
+
+
+        myAdapter = new CandidateAdapter(options, this);
+        rvCandidateList.setAdapter(myAdapter);
 
 
     }

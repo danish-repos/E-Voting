@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ProfileTab">
 
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvSave_Changes"
+            android:id="@+id/tvSaveChanges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -83,160 +83,28 @@
         android:clickable="true"
         />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <fragment
+        android:id="@+id/editUserFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        class="com.example.e_voting.EditUserDetailsFragment"
+        tools:layout="@layout/fragment_edit_user_details" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etFirstName_Profile"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnLogout_Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="First name"
-            android:inputType="text"
+            android:layout_margin="25dp"
+            android:backgroundTint="@color/DarkPrimaryColor"
+            android:layout_alignParentBottom="true"
+            android:text="Logout"
             android:textSize="14sp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#0C0C0C"
-        android:text="TextView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etLastName_Profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="Last name"
-            android:inputType="text"
-            android:textSize="14sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#0C0C0C"
-        android:text="TextView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textSize="14sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#0C0C0C"
-        android:text="TextView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etOldPassword_Profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/lock"
-            android:drawablePadding="8dp"
-            android:hint="Old Password"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/divider4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#0C0C0C"
-        android:text="TextView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNewPassword_Profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/lock"
-            android:drawablePadding="8dp"
-            android:hint="New Password"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/divider5"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#0C0C0C"
-        android:text="TextView" />
-
-    <Button
-        android:id="@+id/btnLogout_Profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:backgroundTint="@color/DarkPrimaryColor"
-        android:text="Logout"
-        android:textSize="14sp"
-
-        />
+    </RelativeLayout>
 
 </LinearLayout>
