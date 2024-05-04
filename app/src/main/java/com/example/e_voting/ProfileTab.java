@@ -207,12 +207,10 @@ public class ProfileTab extends Fragment {
                                 firstName = data.child("FirstName").getValue(String.class);
                                 lastName = data.child("LastName").getValue(String.class);
                                 email = data.child("Email").getValue(String.class);
-                                oldPassword = data.child("Password").getValue(String.class);
 
                                 etFirstName.setText(firstName);
                                 etLastName.setText(lastName);
                                 etEmail.setText(email);
-                                etOldPassword.setText(oldPassword);
 
                             }
 

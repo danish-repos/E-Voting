@@ -3,9 +3,9 @@ package com.example.e_voting;
 import static android.app.PendingIntent.getActivity;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +19,27 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class CandidateAdapter extends FirebaseRecyclerAdapter<Candidate, CandidateAdapter.ViewHolder> {
+public class CandidateAdapterAdmin extends FirebaseRecyclerAdapter<Candidate, CandidateAdapterAdmin.ViewHolder> {
     Context context;
 
-    public CandidateAdapter(@NonNull FirebaseRecyclerOptions<Candidate> options, Context c) {
+    public CandidateAdapterAdmin(@NonNull FirebaseRecyclerOptions<Candidate> options, Context c) {
         super(options);
         context = c;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int position, @NonNull Candidate candidate) {
+    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Candidate candidate) {
         viewHolder.tvCandidateParty.setText(candidate.getPartyName());
         viewHolder.tvCandidateName.setText(candidate.getName());
+
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -42,7 +49,7 @@ public class CandidateAdapter extends FirebaseRecyclerAdapter<Candidate, Candida
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                getRef(position).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                getRef(i).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show();

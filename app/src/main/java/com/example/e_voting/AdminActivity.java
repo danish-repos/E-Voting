@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -35,7 +34,7 @@ public class AdminActivity extends AppCompatActivity {
     Button btnAddCandidate;
 
     TextView tvAdmin;
-    CandidateAdapter myAdapter;
+    CandidateAdapterAdmin myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +134,7 @@ public class AdminActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
 
 
-        myAdapter = new CandidateAdapter(options, this);
+        myAdapter = new CandidateAdapterAdmin(options, this);
         rvCandidateList.setAdapter(myAdapter);
 
 

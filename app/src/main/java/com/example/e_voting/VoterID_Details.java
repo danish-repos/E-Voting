@@ -1,6 +1,8 @@
 package com.example.e_voting;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,12 @@ public class VoterID_Details extends AppCompatActivity {
         });
 
         init();
+        btnNext_VoterID_Details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(VoterID_Details.this, VoterID_Verification.class));
+            }
+        });
     }
 
     private void init()

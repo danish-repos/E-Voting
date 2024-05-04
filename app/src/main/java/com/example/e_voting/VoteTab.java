@@ -2,7 +2,6 @@ package com.example.e_voting;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,18 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
 
 public class VoteTab extends Fragment {
 
@@ -33,7 +24,7 @@ public class VoteTab extends Fragment {
     RecyclerView rvCandidates;
     Button btnSearchPlaceVote;
 
-    CandidateAdapter myAdapter;
+    CandidateAdapterVote myAdapter;
 
     public VoteTab() {
         // Required empty public constructor
@@ -72,7 +63,7 @@ public class VoteTab extends Fragment {
                 new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
 
 
-        myAdapter = new CandidateAdapter(options, getContext());
+        myAdapter = new CandidateAdapterVote(options, getContext());
         rvCandidates.setAdapter(myAdapter);
 
 
