@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +25,12 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
     Button btnVote;
     RecyclerView rvPosts;
+    PostAdapter adapter;
     ImageView imgBack;
 
     TextView tvCandidateNameVC, tvCandidatePartyVC;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,12 @@ public class VoteCandidateActivity extends AppCompatActivity {
         rvPosts = findViewById(R.id.rvPosts);
         tvCandidateNameVC = findViewById(R.id.tvCandidateNameVC);
         tvCandidatePartyVC = findViewById(R.id.tvCandidatePartyVC);
+
+        rvPosts.setLayoutManager(new LinearLayoutManager(this));
+        rvPosts.setHasFixedSize(true);
+
+        adapter = new PostAdapter(this);
+        rvPosts.setAdapter(adapter);
 
     }
 }

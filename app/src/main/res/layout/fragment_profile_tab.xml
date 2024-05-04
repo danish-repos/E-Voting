@@ -90,21 +90,32 @@
         class="com.example.e_voting.EditUserDetailsFragment"
         tools:layout="@layout/fragment_edit_user_details" />
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-        <Button
-            android:id="@+id/btnLogout_Profile"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="25dp"
+            android:layout_margin="20dp"
             android:backgroundTint="@color/DarkPrimaryColor"
-            android:layout_alignParentBottom="true"
-            android:text="Logout"
-            android:textSize="14sp" />
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btnLogout_Profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/DarkPrimaryColor"
+                android:text="Logout" />
+
+        </androidx.cardview.widget.CardView>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>

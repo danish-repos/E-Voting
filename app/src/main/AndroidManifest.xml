@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EVoting"
         tools:targetApi="31">
+
         <activity
             android:name=".AddCandidateActivity"
             android:exported="false" />
