@@ -17,37 +17,37 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".AddCandidateActivity"
+            android:name=".Activities.AddCandidateActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".Activities.AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".VoteCandidateActivity"
+            android:name=".Activities.VoteCandidateActivity"
             android:exported="false" />
         <activity
-            android:name=".VoteConfirmation"
+            android:name=".Activities.VoteConfirmation"
             android:exported="false" />
         <activity
-            android:name=".VoterID_Verification"
+            android:name=".Activities.VoterID_Verification"
             android:exported="false" />
         <activity
-            android:name=".VoterID_Details"
+            android:name=".Activities.VoterID_Details"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".Activities.LogInActivity"
             android:exported="false" />
         <activity
-            android:name=".InstructionsActivity"
+            android:name=".Activities.InstructionsActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".Activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

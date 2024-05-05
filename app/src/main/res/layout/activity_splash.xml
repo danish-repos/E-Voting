@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/DarkPrimaryColor"
-    tools:context=".SplashActivity">
+    tools:context=".Activities.SplashActivity">
 
     <!-- Logo and TextView -->
     <ImageView
