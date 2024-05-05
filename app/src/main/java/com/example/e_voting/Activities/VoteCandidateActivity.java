@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_voting.Adapters.PostAdapter;
+
+
+import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.Classes.Post;
+import com.example.e_voting.R;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,12 +33,13 @@ import com.google.firebase.database.ValueEventListener;
 public class VoteCandidateActivity extends AppCompatActivity {
 
     Button btnVoteVC;
-    RecyclerView rvPosts;
-    PostAdapter adapter;
+    RecyclerView rvPostsVC;
+    PostAdapter myAdapter;
     ImageView imgBack;
 
     TextView tvCandidateNameVC, tvCandidatePartyVC;
 
+    String name;
 
 
     @Override
@@ -46,10 +55,24 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
         init();
 
-        String name = getIntent().getStringExtra("Name");
-        Query query = FirebaseDatabase.getInstance().getReference().child("Candidates").orderByChild("name").equalTo(name);
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        name = getIntent().getStringExtra("Name");
+
+        rvPostsVC.setLayoutManager(new LinearLayoutManager(this));
+        rvPostsVC.setHasFixedSize(true);
+
+        Query query = FirebaseDatabase.getInstance().getReference().child("Posts").orderByChild("nameCandidate").equalTo(name);
+
+        FirebaseRecyclerOptions<Post> options =
+                new FirebaseRecyclerOptions.Builder<Post>().setQuery(query, Post.class).build();
+
+
+        myAdapter = new PostAdapter(options,this);
+        rvPostsVC.setAdapter(myAdapter);
+
+        Query query1 = FirebaseDatabase.getInstance().getReference().child("Candidates").orderByChild("name").equalTo(name);
+
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -89,15 +112,9 @@ public class VoteCandidateActivity extends AppCompatActivity {
         btnVoteVC = findViewById(R.id.btnVoteVC);
         imgBack = findViewById(R.id.imgBack);
 
-        rvPosts = findViewById(R.id.rvPosts);
+        rvPostsVC = findViewById(R.id.rvPostsVC);
         tvCandidateNameVC = findViewById(R.id.tvCandidateNameVC);
         tvCandidatePartyVC = findViewById(R.id.tvCandidatePartyVC);
-
-        rvPosts.setLayoutManager(new LinearLayoutManager(this));
-        rvPosts.setHasFixedSize(true);
-
-        adapter = new PostAdapter(this);
-        rvPosts.setAdapter(adapter);
 
     }
 }

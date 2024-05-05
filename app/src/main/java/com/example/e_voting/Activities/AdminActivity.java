@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_voting.Adapters.CandidateAdapterAdmin;
+import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.e_voting.Adapters.MainTabAdapter;
+import com.example.e_voting.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;

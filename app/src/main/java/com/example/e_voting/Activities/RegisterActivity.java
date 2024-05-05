@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.e_voting.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;

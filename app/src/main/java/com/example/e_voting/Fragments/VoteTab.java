@@ -1,7 +1,9 @@
-package com.example.e_voting;
+package com.example.e_voting.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +14,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.e_voting.Adapters.CandidateAdapterVote;
+import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class VoteTab extends Fragment {
 
@@ -52,12 +61,27 @@ public class VoteTab extends Fragment {
         scPlaceVote = view.findViewById(R.id.scPlaceVote);
         rvCandidatesVT = view.findViewById(R.id.rvCandidatesVT);
 
+
         rvCandidatesVT.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCandidatesVT.setHasFixedSize(true);
+
+        FirebaseDatabase.getInstance().getReference().child("Candidates")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        tvNumberCandidates.setText(snapshot.getChildrenCount()+"");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
         btnSearchPlaceVote = view.findViewById(R.id.btnSearchPlaceVote);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Candidates");
+           
 
         FirebaseRecyclerOptions<Candidate> options =
                 new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
@@ -65,7 +89,6 @@ public class VoteTab extends Fragment {
 
         myAdapter = new CandidateAdapterVote(options, getContext());
         rvCandidatesVT.setAdapter(myAdapter);
-
 
         btnSearchPlaceVote.setOnClickListener(new View.OnClickListener() {
             @Override

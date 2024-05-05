@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import android.os.Bundle;
 
@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+
+import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;

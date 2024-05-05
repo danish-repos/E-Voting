@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".NewsTab">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPostsNT"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="News" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

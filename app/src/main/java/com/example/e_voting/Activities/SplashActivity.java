@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.content.Intent;
 
+import com.example.e_voting.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,6 +25,13 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+//                Post post = new Post("Mubeen",
+//                        "Random Gibberish",
+//                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur",
+//                        0,
+//                        0);
+//                FirebaseDatabase.getInstance().getReference().child("Posts").push().setValue(post);
+
                 IfAlreadyLoggedIn();
             }
         }, SPLASH_TIMEOUT);

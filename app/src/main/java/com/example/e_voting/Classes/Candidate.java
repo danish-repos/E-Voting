@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Classes;
 
 public class Candidate {
 

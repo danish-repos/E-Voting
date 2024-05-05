@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.e_voting.Adapters.HomeTabAdapter;
+import com.example.e_voting.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;

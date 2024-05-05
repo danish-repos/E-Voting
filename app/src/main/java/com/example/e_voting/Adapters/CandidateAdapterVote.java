@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_voting.Activities.VoteCandidateActivity;
+
+
+import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -46,7 +51,7 @@ public class CandidateAdapterVote extends FirebaseRecyclerAdapter<Candidate, Can
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvCandidateName, tvCandidateParty, tvNumberOfVotes;
 

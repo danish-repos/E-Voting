@@ -5,13 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     android:orientation="vertical"
     >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="20dp"
         >
 
         <LinearLayout
@@ -21,6 +25,7 @@
             >
 
             <TextView
+                android:id="@+id/tvCandidateNameP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="POST"
@@ -105,32 +110,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0 downvotes"
-                        android:layout_margin="5dp"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llComment"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    >
-
-                    <ImageView
-                        android:id="@+id/ivComment"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/comment"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvComment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0 comments"
                         android:layout_margin="5dp"
                         />
 

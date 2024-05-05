@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import android.content.Intent;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
+import com.example.e_voting.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,7 +45,7 @@ public class InstructionsActivity extends AppCompatActivity {
         btnNext2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InstructionsActivity.this,LogInActivity.class));
+                startActivity(new Intent(InstructionsActivity.this, LogInActivity.class));
                 finish();
             }
         });

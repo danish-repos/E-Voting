@@ -1,11 +1,13 @@
-package com.example.e_voting;
+package com.example.e_voting.Adapters;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,7 +33,7 @@ public class CandidateAdapterAdmin extends FirebaseRecyclerAdapter<Candidate, Ca
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Candidate candidate) {
+    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") int i, @NonNull Candidate candidate) {
         viewHolder.tvCandidateParty.setText(candidate.getPartyName());
         viewHolder.tvCandidateName.setText(candidate.getName());
         viewHolder.tvNumberOfVotes.setText(candidate.getTotalVotes()+"");
@@ -81,10 +85,10 @@ public class CandidateAdapterAdmin extends FirebaseRecyclerAdapter<Candidate, Ca
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_candidate_view,parent,false);
-        return new ViewHolder(v);
+        return new CandidateAdapterAdmin.ViewHolder(v);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvCandidateName, tvCandidateParty, tvNumberOfVotes;
 

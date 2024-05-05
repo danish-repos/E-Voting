@@ -1,4 +1,4 @@
-package com.example.e_voting;
+package com.example.e_voting.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.e_voting.R;
+
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 import java.io.File;
@@ -97,16 +100,14 @@ public class VoterID_Details extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == Activity.RESULT_OK && data != null) {
-            // Get the selected image URI
             Uri selectedImageUri = data.getData();
 
-            // Display the selected image in the ImageView
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 String extractedText = extractTextFromImage(bitmap);
 
-                // will take all the text from the image.
 
+                etCNIC_Number.setText(extractedText);
                 ivCNIC.setImageBitmap(bitmap);
 
             } catch (IOException e) {
