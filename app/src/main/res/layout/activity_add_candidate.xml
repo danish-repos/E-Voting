@@ -8,4 +8,176 @@
     android:orientation="vertical"
     tools:context=".AddCandidateActivity">
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="ADD CANDIADATE"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivBackAC"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:src="@drawable/arrowback"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etCandidateNameAC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/person"
+        android:drawablePadding="8dp"
+        android:hint="Enter the candidate name"
+        android:inputType="text"
+        android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+    android:id="@+id/divider1"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="#0C0C0C"
+    android:text="TextView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="13dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etLocationAC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/person"
+        android:drawablePadding="8dp"
+        android:hint="Enter the location"
+        android:inputType="text"
+        android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+    android:id="@+id/divider2"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="#0C0C0C"
+    android:text="TextView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="13dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPartyNameAC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/person"
+        android:drawablePadding="8dp"
+        android:hint="Enter the party name "
+        android:inputType="textEmailAddress"
+        android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+    android:id="@+id/divider3"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="#0C0C0C"
+    android:text="TextView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="13dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etTypeAC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/person"
+        android:drawablePadding="8dp"
+        android:hint="Enter the type"
+        android:inputType="text"
+        android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#0C0C0C"
+        android:text="TextView" />
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonsLayout"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAddCandidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                android:text="Add New Candidate"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>

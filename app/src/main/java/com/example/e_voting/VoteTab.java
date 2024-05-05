@@ -21,7 +21,7 @@ public class VoteTab extends Fragment {
 
     TextView tvNumberCandidates;
     SearchView scPlaceVote;
-    RecyclerView rvCandidates;
+    RecyclerView rvCandidatesVT;
     Button btnSearchPlaceVote;
 
     CandidateAdapterVote myAdapter;
@@ -50,10 +50,10 @@ public class VoteTab extends Fragment {
 
         tvNumberCandidates = view.findViewById(R.id.tvNumberCandidates);
         scPlaceVote = view.findViewById(R.id.scPlaceVote);
-        rvCandidates = view.findViewById(R.id.rvCandidates);
+        rvCandidatesVT = view.findViewById(R.id.rvCandidatesVT);
 
-        rvCandidates.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvCandidates.setHasFixedSize(true);
+        rvCandidatesVT.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvCandidatesVT.setHasFixedSize(true);
 
         btnSearchPlaceVote = view.findViewById(R.id.btnSearchPlaceVote);
 
@@ -64,7 +64,7 @@ public class VoteTab extends Fragment {
 
 
         myAdapter = new CandidateAdapterVote(options, getContext());
-        rvCandidates.setAdapter(myAdapter);
+        rvCandidatesVT.setAdapter(myAdapter);
 
 
         btnSearchPlaceVote.setOnClickListener(new View.OnClickListener() {

@@ -19,11 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class VoteCandidateActivity extends AppCompatActivity {
 
-    Button btnVote;
+    Button btnVoteVC;
     RecyclerView rvPosts;
     PostAdapter adapter;
     ImageView imgBack;
@@ -43,10 +44,22 @@ public class VoteCandidateActivity extends AppCompatActivity {
             return insets;
         });
 
-        FirebaseDatabase.getInstance().getReference("Candidates").addListenerForSingleValueEvent(new ValueEventListener() {
+        init();
+
+        String name = getIntent().getStringExtra("Name");
+        Query query = FirebaseDatabase.getInstance().getReference().child("Candidates").orderByChild("name").equalTo(name);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
 
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        Candidate candidate = data.getValue(Candidate.class);
+                        tvCandidateNameVC.setText(candidate.getName());
+                        tvCandidatePartyVC.setText(candidate.getPartyName());
+                    }
+                }
             }
 
             @Override
@@ -55,9 +68,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
             }
         });
 
-        init();
-
-        btnVote.setOnClickListener(new View.OnClickListener() {
+        btnVoteVC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(VoteCandidateActivity.this, VoterID_Details.class));
@@ -75,7 +86,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
     }
 
     private void init(){
-        btnVote = findViewById(R.id.btnVote);
+        btnVoteVC = findViewById(R.id.btnVoteVC);
         imgBack = findViewById(R.id.imgBack);
 
         rvPosts = findViewById(R.id.rvPosts);

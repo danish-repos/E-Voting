@@ -32,12 +32,13 @@ public class CandidateAdapterVote extends FirebaseRecyclerAdapter<Candidate, Can
     protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Candidate candidate) {
         viewHolder.tvCandidateParty.setText(candidate.getPartyName());
         viewHolder.tvCandidateName.setText(candidate.getName());
+        viewHolder.tvNumberOfVotes.setText(candidate.getTotalVotes()+"");
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, VoteCandidateActivity.class);
-                intent.putExtra("Number", i);
+                intent.putExtra("Name", candidate.getName());
                 context.startActivity(intent);
 
             }
@@ -47,13 +48,14 @@ public class CandidateAdapterVote extends FirebaseRecyclerAdapter<Candidate, Can
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvCandidateName, tvCandidateParty;
+        TextView tvCandidateName, tvCandidateParty, tvNumberOfVotes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvCandidateName = itemView.findViewById(R.id.tvCandidateName);
             tvCandidateParty = itemView.findViewById(R.id.tvCandidateParty);
+            tvNumberOfVotes = itemView.findViewById(R.id.tvNumberOfVotes);
         }
     }
 }

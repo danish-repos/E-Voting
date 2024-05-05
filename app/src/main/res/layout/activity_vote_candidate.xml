@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#F4EBEB"
         app:cardElevation="10dp"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         app:cardCornerRadius="20dp">
 
         <LinearLayout
@@ -151,7 +151,7 @@
         >
 
         <Button
-            android:id="@+id/btnVote"
+            android:id="@+id/btnVoteVC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/DarkPrimaryColor"
@@ -162,6 +162,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="10dp"
         android:id="@+id/rvPosts"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
