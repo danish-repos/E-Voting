@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.e_voting.Adapters.CandidateAdapterVote;
 import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.Classes.LinearLayoutManagerWrapper;
 import com.example.e_voting.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -62,7 +63,7 @@ public class VoteTab extends Fragment {
         rvCandidatesVT = view.findViewById(R.id.rvCandidatesVT);
 
 
-        rvCandidatesVT.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvCandidatesVT.setLayoutManager(new LinearLayoutManagerWrapper(getContext(),LinearLayoutManager.VERTICAL,false));
         rvCandidatesVT.setHasFixedSize(true);
 
         FirebaseDatabase.getInstance().getReference().child("Candidates")

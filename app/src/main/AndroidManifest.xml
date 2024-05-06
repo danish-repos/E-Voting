@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
     <application
@@ -15,7 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EVoting"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Activities.AddPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AdminPosts"
+            android:exported="false" />
         <activity
             android:name=".Activities.AddCandidateActivity"
             android:exported="false" />
