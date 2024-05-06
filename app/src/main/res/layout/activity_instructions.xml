@@ -12,7 +12,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        tools:layout="@layout/fragment_instructions_page1"
-       class="com.example.e_voting.InstructionsPage1Fragment" />
+       class="com.example.e_voting.Fragments.InstructionsPage1Fragment" />
 
 
     <fragment
@@ -20,6 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_instructions_page2"
-        class="com.example.e_voting.InstructionsPage2Fragment" />
+        class="com.example.e_voting.Fragments.InstructionsPage2Fragment" />
 
 </LinearLayout>

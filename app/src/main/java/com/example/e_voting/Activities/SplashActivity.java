@@ -25,13 +25,6 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                Post post = new Post("Mubeen",
-//                        "Random Gibberish",
-//                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur",
-//                        0,
-//                        0);
-//                FirebaseDatabase.getInstance().getReference().child("Posts").push().setValue(post);
-
                 IfAlreadyLoggedIn();
             }
         }, SPLASH_TIMEOUT);

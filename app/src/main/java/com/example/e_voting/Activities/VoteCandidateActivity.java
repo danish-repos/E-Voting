@@ -42,6 +42,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
     String name;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +62,8 @@ public class VoteCandidateActivity extends AppCompatActivity {
         rvPostsVC.setLayoutManager(new LinearLayoutManager(this));
         rvPostsVC.setHasFixedSize(true);
 
-        Query query = FirebaseDatabase.getInstance().getReference().child("Posts").orderByChild("nameCandidate").equalTo(name);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Posts")
+                .orderByChild("nameCandidate").equalTo(name);
 
         FirebaseRecyclerOptions<Post> options =
                 new FirebaseRecyclerOptions.Builder<Post>().setQuery(query, Post.class).build();
@@ -116,5 +118,17 @@ public class VoteCandidateActivity extends AppCompatActivity {
         tvCandidateNameVC = findViewById(R.id.tvCandidateNameVC);
         tvCandidatePartyVC = findViewById(R.id.tvCandidatePartyVC);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        myAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myAdapter.stopListening();
     }
 }

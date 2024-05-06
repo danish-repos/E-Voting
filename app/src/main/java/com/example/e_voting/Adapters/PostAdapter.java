@@ -31,8 +31,8 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
         viewHolder.tvCandidateNameP.setText(post.getNameCandidate());
         viewHolder.tvTopic_Post.setText(post.getTopic());
         viewHolder.tvPost.setText(post.getText());
-        viewHolder.tvLike.setText(post.getLikes()+"");
-        viewHolder.tvDislike.setText(post.getDislikes()+"");
+        viewHolder.tvLike.setText(post.getLikes()+" upvotes");
+        viewHolder.tvDislike.setText(post.getDislikes()+" downvotes");
 
 
 
