@@ -20,6 +20,7 @@ import com.example.e_voting.Adapters.PostAdapter;
 
 
 import com.example.e_voting.Classes.Candidate;
+import com.example.e_voting.Classes.LinearLayoutManagerWrapper;
 import com.example.e_voting.Classes.Post;
 import com.example.e_voting.R;
 
@@ -59,7 +60,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
         name = getIntent().getStringExtra("Name");
 
-        rvPostsVC.setLayoutManager(new LinearLayoutManager(this));
+        rvPostsVC.setLayoutManager(new LinearLayoutManagerWrapper(this));
         rvPostsVC.setHasFixedSize(true);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Posts")
@@ -117,6 +118,9 @@ public class VoteCandidateActivity extends AppCompatActivity {
         rvPostsVC = findViewById(R.id.rvPostsVC);
         tvCandidateNameVC = findViewById(R.id.tvCandidateNameVC);
         tvCandidatePartyVC = findViewById(R.id.tvCandidatePartyVC);
+
+
+
 
     }
 
