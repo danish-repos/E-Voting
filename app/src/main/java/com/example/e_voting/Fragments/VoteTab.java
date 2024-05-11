@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 public class VoteTab extends Fragment {
 
     TextView tvNumberCandidates;
-    SearchView scPlaceVote;
+    SearchView scCandidate;
     RecyclerView rvCandidatesVT;
     Button btnSearchPlaceVote;
 
@@ -59,7 +59,7 @@ public class VoteTab extends Fragment {
         View view = inflater.inflate(R.layout.fragment_vote_tab, container, false);
 
         tvNumberCandidates = view.findViewById(R.id.tvNumberCandidates);
-        scPlaceVote = view.findViewById(R.id.scPlaceVote);
+        scCandidate = view.findViewById(R.id.scCandidate);
         rvCandidatesVT = view.findViewById(R.id.rvCandidatesVT);
 
 
@@ -98,7 +98,7 @@ public class VoteTab extends Fragment {
             }
         });
 
-        scPlaceVote.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        scCandidate.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -106,7 +106,21 @@ public class VoteTab extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+
+                // When the text in the search view changes, update the query to filter candidates
+                Query filteredQuery = FirebaseDatabase.getInstance().getReference()
+                        .child("Candidates")
+                        .orderByChild("name")
+                        .startAt(newText)
+                        .endAt(newText + "\uf8ff");
+
+                FirebaseRecyclerOptions<Candidate> filteredOptions =
+                        new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(filteredQuery, Candidate.class).build();
+
+                myAdapter.updateOptions(filteredOptions);
+                myAdapter.startListening();
+
+                return true;
             }
         });
 

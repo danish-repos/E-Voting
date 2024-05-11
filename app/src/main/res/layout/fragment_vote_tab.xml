@@ -26,15 +26,15 @@
         android:orientation="horizontal">
 
         <SearchView
-            android:id="@+id/scPlaceVote"
+            android:id="@+id/scCandidate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
-            android:queryHint="Search your place"
+            android:queryHint="Search Candidate Name"
             android:focusable="true"
             android:clickable="true"
             android:focusableInTouchMode="true"
-            android:inputType="text"
+            android:inputType="textCapSentences"
             android:iconifiedByDefault="false"
             />
 
