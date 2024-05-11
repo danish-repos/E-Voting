@@ -2,6 +2,7 @@ package com.example.e_voting.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ public class VoterID_Verification extends AppCompatActivity {
     ImageView ivIdVerification_BackArrow;
     EditText etVoterName, etVoterDOB, etVoterIdNumber, etVoterAddress, etZipcode;
     Button btnConfirm_VoterID_Verification;
+
+    String Name, PartyName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +36,26 @@ public class VoterID_Verification extends AppCompatActivity {
 
         init();
 
+        Name = getIntent().getStringExtra("Name");
+        PartyName = getIntent().getStringExtra("PartyName");
+
         btnConfirm_VoterID_Verification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(VoterID_Verification.this, VoteConfirmation.class);
+                intent.putExtra("Name", Name);
+                intent.putExtra("PartyName", PartyName);
+
+                startActivity(intent);
+
+            }
+        });
+
+        ivIdVerification_BackArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

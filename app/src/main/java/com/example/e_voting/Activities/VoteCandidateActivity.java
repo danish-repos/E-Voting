@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -40,7 +41,8 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
     TextView tvCandidateNameVC, tvCandidatePartyVC;
 
-    String name;
+    String LogedInUserID, Name, PartyName;
+    Boolean UseralreadyVoted;
 
 
 
@@ -55,16 +57,21 @@ public class VoteCandidateActivity extends AppCompatActivity {
             return insets;
         });
 
+        LogedInUserID = getLoggedInUser();
+
         init();
 
+        UseralreadyVoted = CheckIFAlreadyVoted();
 
-        name = getIntent().getStringExtra("Name");
+
+        Name = getIntent().getStringExtra("Name");
+        PartyName = getIntent().getStringExtra("PartyName");
 
         rvPostsVC.setLayoutManager(new LinearLayoutManagerWrapper(this));
         rvPostsVC.setHasFixedSize(true);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Posts")
-                .orderByChild("nameCandidate").equalTo(name);
+                .orderByChild("nameCandidate").equalTo(Name);
 
         FirebaseRecyclerOptions<Post> options =
                 new FirebaseRecyclerOptions.Builder<Post>().setQuery(query, Post.class).build();
@@ -73,31 +80,25 @@ public class VoteCandidateActivity extends AppCompatActivity {
         myAdapter = new PostAdapter(options,this);
         rvPostsVC.setAdapter(myAdapter);
 
-        Query query1 = FirebaseDatabase.getInstance().getReference().child("Candidates").orderByChild("name").equalTo(name);
-
-        query1.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-
-                    for (DataSnapshot data : snapshot.getChildren()) {
-                        Candidate candidate = data.getValue(Candidate.class);
-                        tvCandidateNameVC.setText(candidate.getName());
-                        tvCandidatePartyVC.setText(candidate.getPartyName());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        tvCandidateNameVC.setText(Name);
+        tvCandidatePartyVC.setText(PartyName);
 
         btnVoteVC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(VoteCandidateActivity.this, VoterID_Details.class));
+
+                if(!UseralreadyVoted) {
+                    Intent intent = new Intent(VoteCandidateActivity.this, VoterID_Details.class);
+                    intent.putExtra("Name", Name);
+                    intent.putExtra("PartyName", PartyName);
+
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(VoteCandidateActivity.this, "You have Already voted", Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
             }
@@ -111,6 +112,62 @@ public class VoteCandidateActivity extends AppCompatActivity {
         });
     }
 
+    public boolean CheckIFAlreadyVoted() {
+        UseralreadyVoted = false;
+        FirebaseDatabase.getInstance().getReference()
+                .child("Votes").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot data: snapshot.getChildren()) {
+
+                            String users_id = data.child("userID").getValue(String.class);
+                            if (users_id != null) {
+                                if (users_id.equals(LogedInUserID)) {
+                                    UseralreadyVoted = true;
+                                    break;
+                                }
+
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+        return UseralreadyVoted;
+    }
+
+    public String getLoggedInUser() {
+
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data: snapshot.getChildren()) {
+
+                    if(Boolean.TRUE.equals(data.child("isLogin").getValue(Boolean.class)))
+                    {
+                        LogedInUserID = data.getKey();
+                        break;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return LogedInUserID;
+    }
+
     private void init(){
         btnVoteVC = findViewById(R.id.btnVoteVC);
         imgBack = findViewById(R.id.imgBack);
@@ -118,9 +175,6 @@ public class VoteCandidateActivity extends AppCompatActivity {
         rvPostsVC = findViewById(R.id.rvPostsVC);
         tvCandidateNameVC = findViewById(R.id.tvCandidateNameVC);
         tvCandidatePartyVC = findViewById(R.id.tvCandidatePartyVC);
-
-
-
 
     }
 

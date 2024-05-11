@@ -83,10 +83,6 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
                     viewHolder.ivLike.setColorFilter(ContextCompat.getColor(context, R.color.DarkPrimaryColor));
                     viewHolder.tvLike.setTextColor(ContextCompat.getColor(context, R.color.DarkPrimaryColor));
 
-                    viewHolder.ivDislike.clearColorFilter();
-                    viewHolder.tvDislike.setTextColor(ContextCompat.getColor(context, R.color.black));
-
-
                 }
 
             }
@@ -124,9 +120,6 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
 
                     viewHolder.ivDislike.setColorFilter(ContextCompat.getColor(context, R.color.DarkPrimaryColor));
                     viewHolder.tvDislike.setTextColor(ContextCompat.getColor(context, R.color.DarkPrimaryColor));
-
-                    viewHolder.ivLike.clearColorFilter();
-                    viewHolder.tvLike.setTextColor(ContextCompat.getColor(context, R.color.black));
 
                 }
             }

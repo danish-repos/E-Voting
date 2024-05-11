@@ -14,7 +14,6 @@
         >
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -28,17 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivVote_Confirmation"
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:src="@drawable/arrowback"
-            android:layout_marginTop="5dp"
-            android:clickable="true"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/ivCandidate_Elect_Mark"
+                android:id="@+id/ivCandidate_Elect_Mark_R"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/female_profile"
@@ -93,7 +81,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/ivCandidate_Photo"
+                    android:id="@+id/ivCandidate_Photo_R"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/male_profile" />
@@ -114,7 +102,7 @@
                 android:layout_weight="2" />
 
             <TextView
-                android:id="@+id/tvCandidateName"
+                android:id="@+id/tvCandidateName_R"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -125,7 +113,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCandidateParty"
+                android:id="@+id/tvCandidateParty_R"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -207,7 +195,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/btnVote_Confirmation"
+                android:id="@+id/btnBack_to_HomeScreen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/DarkPrimaryColor"

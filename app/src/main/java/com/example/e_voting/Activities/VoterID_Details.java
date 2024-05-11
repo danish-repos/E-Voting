@@ -42,6 +42,7 @@ public class VoterID_Details extends AppCompatActivity {
     EditText etCNIC_Number;
     Button btnNext_VoterID_Details;
     final int REQUEST_IMAGE_PICK = 1;
+    String Name, PartyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,10 @@ public class VoterID_Details extends AppCompatActivity {
         });
 
         init();
+
+        Name = getIntent().getStringExtra("Name");
+        PartyName = getIntent().getStringExtra("PartyName");
+
         btnNext_VoterID_Details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,10 +67,15 @@ public class VoterID_Details extends AppCompatActivity {
                 String cnic = etCNIC_Number.getText().toString().trim();
 
                 if(cnic.isEmpty()) {
+                    Toast.makeText(VoterID_Details.this, "Enter CNIC Please", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                startActivity(new Intent(VoterID_Details.this, VoterID_Verification.class));
+                Intent intent = new Intent(VoterID_Details.this, VoterID_Verification.class);
+                intent.putExtra("Name", Name);
+                intent.putExtra("PartyName", PartyName);
+
+                startActivity(intent);
             }
         });
 

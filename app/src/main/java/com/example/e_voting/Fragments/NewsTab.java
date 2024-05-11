@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.e_voting.Adapters.PostAdapter;
+import com.example.e_voting.Classes.LinearLayoutManagerWrapper;
 import com.example.e_voting.Classes.Post;
 import com.example.e_voting.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -45,7 +46,7 @@ public class NewsTab extends Fragment {
 
         rvPostsNT = view.findViewById(R.id.rvPostsNT);
 
-        rvPostsNT.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPostsNT.setLayoutManager(new LinearLayoutManagerWrapper(getContext()));
         rvPostsNT.setHasFixedSize(true);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Posts");
