@@ -97,7 +97,7 @@
             android:background="@android:color/transparent"
             android:drawableStart="@drawable/person"
             android:drawablePadding="8dp"
-            android:hint="12-digit ID Number"
+            android:hint="13-digit ID Number"
             android:inputType="number"
             android:textSize="14sp" />
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +20,10 @@ import com.example.e_voting.R;
 public class VoterID_Verification extends AppCompatActivity {
 
     ImageView ivIdVerification_BackArrow;
-    EditText etVoterName, etVoterDOB, etVoterIdNumber, etVoterAddress, etZipcode;
+    EditText etVoterName, etVoterDOB, etVoterIdNumber, etVoterAddress;
     Button btnConfirm_VoterID_Verification;
 
-    String Name, PartyName;
+    String Name, PartyName, CNIC, nameOfLoggedInUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +39,39 @@ public class VoterID_Verification extends AppCompatActivity {
 
         Name = getIntent().getStringExtra("Name");
         PartyName = getIntent().getStringExtra("PartyName");
+        CNIC = getIntent().getStringExtra("CNIC");
+        nameOfLoggedInUser = getIntent().getStringExtra("UserName");
+
+
+        etVoterIdNumber.setText(CNIC);
+        etVoterName.setText(nameOfLoggedInUser);
 
         btnConfirm_VoterID_Verification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String name = etVoterName.getText().toString().trim();
+                String dob = etVoterDOB.getText().toString().trim();
+                String cnic = etVoterIdNumber.getText().toString().trim();
+                String address = etVoterAddress.getText().toString().trim();
+
+                if (name.isEmpty() || dob.isEmpty() || cnic.isEmpty() || address.isEmpty()){
+                    Toast.makeText(VoterID_Verification.this, "Please fill out all the fields!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(cnic.length() != 13){
+                    Toast.makeText(VoterID_Verification.this, "Please put the correct CNIC", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 Intent intent = new Intent(VoterID_Verification.this, VoteConfirmation.class);
                 intent.putExtra("Name", Name);
                 intent.putExtra("PartyName", PartyName);
+                intent.putExtra("CNIC", CNIC);
+
+
 
                 startActivity(intent);
 
@@ -66,7 +92,6 @@ public class VoterID_Verification extends AppCompatActivity {
         etVoterDOB = findViewById(R.id.etVoterDOB);
         etVoterIdNumber = findViewById(R.id.etVoterIdNumber);
         etVoterAddress = findViewById(R.id.etVoterAddress);
-        etZipcode = findViewById(R.id.etZipcode);
         btnConfirm_VoterID_Verification = findViewById(R.id.btnConfirm_VoterID_Verification);
 
     }

@@ -31,7 +31,7 @@ public class VoteConfirmation extends AppCompatActivity {
     Button btnVote_Confirmation;
     DatabaseReference reference;
 
-    String UserID, CandidateID, Name, PartyName;
+    String UserID, CandidateID, Name, PartyName,CNIC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class VoteConfirmation extends AppCompatActivity {
 
         Name = getIntent().getStringExtra("Name");
         PartyName = getIntent().getStringExtra("PartyName");
+        CNIC = getIntent().getStringExtra("CNIC");
 
         tvCandidateName.setText(Name);
         tvCandidateParty_C.setText(PartyName);
@@ -68,12 +69,14 @@ public class VoteConfirmation extends AppCompatActivity {
                 intent.putExtra("Name", Name);
                 intent.putExtra("PartyName", PartyName);
 
-                Toast.makeText(VoteConfirmation.this, UserID + "  " + CandidateID, Toast.LENGTH_SHORT).show();
-
                 // firebase code
                 StoreVoteOfUser();
                 increaseCountofVotes_Candidate();
 
+                HashMap<Object,String> cnicadd = new HashMap<>();
+                cnicadd.put("CNIC", CNIC);
+                FirebaseDatabase.getInstance().getReference().child("Users")
+                                .child(UserID).push().setValue(cnicadd);
 
                 startActivity(intent);
                 finishAffinity();

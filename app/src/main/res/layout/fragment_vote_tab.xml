@@ -25,27 +25,37 @@
         android:layout_margin="10dp"
         android:orientation="horizontal">
 
-        <SearchView
-            android:id="@+id/scCandidate"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchCandidateLayout"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.3"
-            android:queryHint="Search Candidate Name"
-            android:focusable="true"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:inputType="textCapSentences"
-            android:iconifiedByDefault="false"
-            />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toStartOf="@+id/btnSearchPlaceVote"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/scCandidate">
+
+            <SearchView
+                android:id="@+id/scCandidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search Candidate Name"
+                android:focusable="true"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="text"
+                android:iconifiedByDefault="false"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnSearchPlaceVote"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:drawableEnd="@drawable/dropdown"
             android:drawablePadding="8dp"
-            android:text="@string/election_type"
+            android:text="Types"
             android:textSize="13sp" />
 
     </LinearLayout>
@@ -77,5 +87,9 @@
         android:id="@+id/rvCandidatesVT"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp" />
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        />
 </LinearLayout>

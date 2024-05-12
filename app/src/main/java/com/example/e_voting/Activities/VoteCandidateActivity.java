@@ -2,6 +2,7 @@ package com.example.e_voting.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class VoteCandidateActivity extends AppCompatActivity {
 
     Button btnVoteVC;
@@ -41,7 +44,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
     TextView tvCandidateNameVC, tvCandidatePartyVC;
 
-    String LogedInUserID, Name, PartyName;
+    String LogedInUserID, Name, PartyName, type, votedAlreadyType, nameOfLoggedInUser;
     Boolean UseralreadyVoted;
 
 
@@ -66,6 +69,10 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
         Name = getIntent().getStringExtra("Name");
         PartyName = getIntent().getStringExtra("PartyName");
+        type = getIntent().getStringExtra("Type");
+        Log.d("",type+"");
+
+
 
         rvPostsVC.setLayoutManager(new LinearLayoutManagerWrapper(this));
         rvPostsVC.setHasFixedSize(true);
@@ -91,11 +98,13 @@ public class VoteCandidateActivity extends AppCompatActivity {
                     Intent intent = new Intent(VoteCandidateActivity.this, VoterID_Details.class);
                     intent.putExtra("Name", Name);
                     intent.putExtra("PartyName", PartyName);
+                    intent.putExtra("UserName", nameOfLoggedInUser);
+
 
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(VoteCandidateActivity.this, "You have Already voted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VoteCandidateActivity.this, "You have already voted in '" + votedAlreadyType + "' type", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -113,6 +122,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
     }
 
     public boolean CheckIFAlreadyVoted() {
+
         UseralreadyVoted = false;
         FirebaseDatabase.getInstance().getReference()
                 .child("Votes").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -121,14 +131,26 @@ public class VoteCandidateActivity extends AppCompatActivity {
                         for (DataSnapshot data: snapshot.getChildren()) {
 
                             String users_id = data.child("userID").getValue(String.class);
-                            if (users_id != null) {
-                                if (users_id.equals(LogedInUserID)) {
-                                    UseralreadyVoted = true;
-                                    break;
-                                }
+                            String candidateID = data.child("candidateID").getValue(String.class);
 
-                            }
+                            FirebaseDatabase.getInstance().getReference().child("Candidates")
+                                    .addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            votedAlreadyType = snapshot.child(candidateID).child("type").getValue(String.class);
 
+                                            if (users_id.equals(LogedInUserID) && Objects.equals(votedAlreadyType, type))
+                                            {
+                                                UseralreadyVoted = true;
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
 
                         }
                     }
@@ -153,6 +175,8 @@ public class VoteCandidateActivity extends AppCompatActivity {
                     if(Boolean.TRUE.equals(data.child("isLogin").getValue(Boolean.class)))
                     {
                         LogedInUserID = data.getKey();
+                        nameOfLoggedInUser = data.child("FirstName").getValue(String.class);
+
                         break;
                     }
 

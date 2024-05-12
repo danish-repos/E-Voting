@@ -45,6 +45,7 @@ public class CandidateAdapterVote extends FirebaseRecyclerAdapter<Candidate, Can
                 Intent intent = new Intent(context, VoteCandidateActivity.class);
                 intent.putExtra("Name", candidate.getName());
                 intent.putExtra("PartyName", candidate.getPartyName());
+                intent.putExtra("Type", candidate.getType());
                 context.startActivity(intent);
 
             }

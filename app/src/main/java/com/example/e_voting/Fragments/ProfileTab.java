@@ -61,7 +61,7 @@ public class ProfileTab extends Fragment {
 
         init();
 
-        //fragmentManager.beginTransaction().hide(editUserFrag).commit();
+        fragmentManager.beginTransaction().hide(editUserFrag).commit();
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -49,6 +49,13 @@ public class VoteReceipt extends AppCompatActivity {
             }
         });
 
+        tvDownloadReceipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
 
     }

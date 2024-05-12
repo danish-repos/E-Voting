@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,8 +96,68 @@ public class VoteTab extends Fragment {
         btnSearchPlaceVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(getContext(), btnSearchPlaceVote);
 
+                popup.getMenuInflater().inflate(R.menu.types_of_votes, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        int itemId = item.getItemId();
+
+                        if (itemId == R.id.option1) {
+
+                            Query query = FirebaseDatabase.getInstance().getReference()
+                                    .child("Candidates")
+                                    .orderByChild("type")
+                                    .equalTo("National Assembly");
+
+                            FirebaseRecyclerOptions<Candidate> options =
+                                    new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
+
+                            myAdapter.updateOptions(options);
+                            myAdapter.startListening();
+                            return true;
+
+                        } else if (itemId == R.id.option2) {
+
+                            Query query = FirebaseDatabase.getInstance().getReference()
+                                    .child("Candidates")
+                                    .orderByChild("type")
+                                    .equalTo("Provincial Assembly");
+
+                            FirebaseRecyclerOptions<Candidate> options =
+                                    new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
+
+                            myAdapter.updateOptions(options);
+                            myAdapter.startListening();
+                            return true;
+
+                        }else if(itemId == R.id.option3){
+
+                            Query query = FirebaseDatabase.getInstance().getReference()
+                                    .child("Candidates")
+                                    .orderByChild("type")
+                                    .equalTo("Local body");
+
+                            FirebaseRecyclerOptions<Candidate> options =
+                                    new FirebaseRecyclerOptions.Builder<Candidate>().setQuery(query, Candidate.class).build();
+
+                            myAdapter.updateOptions(options);
+                            myAdapter.startListening();
+                            return true;
+
+                        }
+                        else {
+                            return false;
+                        }
+
+                    }
+                });
+
+                popup.show();
             }
+
         });
 
         scCandidate.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
