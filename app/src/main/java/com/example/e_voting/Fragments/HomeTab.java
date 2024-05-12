@@ -14,24 +14,33 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_voting.Adapters.HomeTabAdapter;
 import com.example.e_voting.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class HomeTab extends Fragment {
 
     SearchView scPlace;
     Button btnSearchPlace;
+    TextView tvCountdown;
 
 
     TabLayout tabLayoutHome;
     ViewPager2 viewPagerHome;
 
-
+    private static final long ONE_SECOND = 1000;
+    private static final long TARGET_DATE_MILLIS = getTargetDateMillis();
 
     public HomeTab() {
 
@@ -49,6 +58,31 @@ public class HomeTab extends Fragment {
 
         viewPagerHome = view.findViewById(R.id.viewPagerHome);
         viewPagerHome.setAdapter(new HomeTabAdapter(requireActivity()));
+
+        tvCountdown = view.findViewById(R.id.tvCountdown);
+
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                long remainingTimeMillis = TARGET_DATE_MILLIS - System.currentTimeMillis();
+                if (remainingTimeMillis > 0) {
+                    long days = TimeUnit.MILLISECONDS.toDays(remainingTimeMillis);
+                    long hours = TimeUnit.MILLISECONDS.toHours(remainingTimeMillis) % 24;
+                    long minutes = TimeUnit.MILLISECONDS.toMinutes(remainingTimeMillis) % 60;
+                    long seconds = TimeUnit.MILLISECONDS.toSeconds(remainingTimeMillis) % 60;
+
+                    String time = String.format("%d days, %d hours, %d minutes", days, hours, minutes);
+
+                    tvCountdown.setText(time);
+                } else {
+                    timer.cancel();
+                }
+
+            }
+        }, 0, ONE_SECOND);
+
 
         scPlace.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -75,13 +109,13 @@ public class HomeTab extends Fragment {
                         int itemId = item.getItemId();
 
                         if (itemId == R.id.option1) {
-                            Toast.makeText(getContext(), "Option 1 selected", Toast.LENGTH_SHORT).show();
+
                             return true;
                         } else if (itemId == R.id.option2) {
-                            Toast.makeText(getContext(), "Option 2 selected", Toast.LENGTH_SHORT).show();
+
                             return true;
                         } else if (itemId == R.id.option3) {
-                            Toast.makeText(getContext(), "Option 3 selected", Toast.LENGTH_SHORT).show();
+
                             return true;
                         } else {
                             return false;
@@ -123,5 +157,17 @@ public class HomeTab extends Fragment {
         });
 
         return view;
+    }
+
+    private static long getTargetDateMillis() {
+        String targetDateStr = "2024-05-20"; // Set your target date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date targetDate = dateFormat.parse(targetDateStr);
+            return targetDate.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
