@@ -31,7 +31,7 @@ public class VoteConfirmation extends AppCompatActivity {
     Button btnVote_Confirmation;
     DatabaseReference reference;
 
-    String UserID, CandidateID, Name, PartyName,CNIC;
+    String  CandidateID, Name, PartyName,CNIC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class VoteConfirmation extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference();
 
-        UserID = getLoggedInUser();
         CandidateID = getCandidateID();
 
         init();
@@ -73,11 +72,6 @@ public class VoteConfirmation extends AppCompatActivity {
                 StoreVoteOfUser();
                 increaseCountofVotes_Candidate();
 
-                HashMap<Object,String> cnicadd = new HashMap<>();
-                cnicadd.put("CNIC", CNIC);
-                FirebaseDatabase.getInstance().getReference().child("Users")
-                                .child(UserID).push().setValue(cnicadd);
-
                 startActivity(intent);
                 finishAffinity();
 
@@ -94,12 +88,12 @@ public class VoteConfirmation extends AppCompatActivity {
 
     public void StoreVoteOfUser() {
 
-        if(!UserID.isEmpty() && !CandidateID.isEmpty()){
+        if(!CNIC.isEmpty() && !CandidateID.isEmpty()){
 
             String VoteID = reference.child("Votes").push().getKey();
             if (VoteID != null) {
                 HashMap<String, Object> votedata = new HashMap<>();
-                votedata.put("userID", UserID);
+                votedata.put("Cnic", CNIC);
                 votedata.put("candidateID", CandidateID);
 
 
@@ -113,30 +107,6 @@ public class VoteConfirmation extends AppCompatActivity {
             Toast.makeText(this, "Can't get ID", Toast.LENGTH_SHORT).show();
 
 
-    }
-
-    public String getLoggedInUser() {
-        reference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data: snapshot.getChildren()) {
-
-                    if(Boolean.TRUE.equals(data.child("isLogin").getValue(Boolean.class)))
-                    {
-                        UserID = data.getKey();
-                        break;
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        return UserID;
     }
 
     public String getCandidateID() {

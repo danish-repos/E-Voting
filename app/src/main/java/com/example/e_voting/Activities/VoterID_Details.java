@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 import com.example.e_voting.R;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 import java.io.File;
@@ -30,6 +34,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -42,7 +47,7 @@ public class VoterID_Details extends AppCompatActivity {
     EditText etCNIC_Number;
     Button btnNext_VoterID_Details;
     final int REQUEST_IMAGE_PICK = 1;
-    String Name, PartyName, nameOfLoggedInUser;
+    String Name, PartyName, nameOfLoggedInUser, cnicLoggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,26 @@ public class VoterID_Details extends AppCompatActivity {
         Name = getIntent().getStringExtra("Name");
         PartyName = getIntent().getStringExtra("PartyName");
         nameOfLoggedInUser = getIntent().getStringExtra("UserName");
+
+        FirebaseDatabase.getInstance().getReference().child("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data: snapshot.getChildren()){
+                    if(data.child("isLogin").getValue(Boolean.class)){
+                        cnicLoggedIn = data.child("Cnic").getValue(String.class);
+                        etCNIC_Number.setText(cnicLoggedIn);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
 
 
         btnNext_VoterID_Details.setOnClickListener(new View.OnClickListener() {

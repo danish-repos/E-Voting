@@ -44,7 +44,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
     TextView tvCandidateNameVC, tvCandidatePartyVC;
 
-    String LogedInUserID, Name, PartyName, type, votedAlreadyType, nameOfLoggedInUser;
+    String LogedInUserIDCNIC, Name, PartyName, type, votedAlreadyType, nameOfLoggedInUser;
     Boolean UseralreadyVoted;
 
 
@@ -60,7 +60,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
             return insets;
         });
 
-        LogedInUserID = getLoggedInUser();
+        LogedInUserIDCNIC = getLoggedInUserCNIC();
 
         init();
 
@@ -70,7 +70,6 @@ public class VoteCandidateActivity extends AppCompatActivity {
         Name = getIntent().getStringExtra("Name");
         PartyName = getIntent().getStringExtra("PartyName");
         type = getIntent().getStringExtra("Type");
-        Log.d("",type+"");
 
 
 
@@ -130,7 +129,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot data: snapshot.getChildren()) {
 
-                            String users_id = data.child("userID").getValue(String.class);
+                            String cnic = data.child("Cnic").getValue(String.class);
                             String candidateID = data.child("candidateID").getValue(String.class);
 
                             FirebaseDatabase.getInstance().getReference().child("Candidates")
@@ -139,7 +138,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             votedAlreadyType = snapshot.child(candidateID).child("type").getValue(String.class);
 
-                                            if (users_id.equals(LogedInUserID) && Objects.equals(votedAlreadyType, type))
+                                            if (cnic.equals(LogedInUserIDCNIC) && Objects.equals(votedAlreadyType, type))
                                             {
                                                 UseralreadyVoted = true;
                                             }
@@ -163,7 +162,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
         return UseralreadyVoted;
     }
 
-    public String getLoggedInUser() {
+    public String getLoggedInUserCNIC() {
 
 
         FirebaseDatabase.getInstance().getReference()
@@ -174,7 +173,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
                     if(Boolean.TRUE.equals(data.child("isLogin").getValue(Boolean.class)))
                     {
-                        LogedInUserID = data.getKey();
+                        LogedInUserIDCNIC = data.child("Cnic").getValue(String.class);
                         nameOfLoggedInUser = data.child("FirstName").getValue(String.class);
 
                         break;
@@ -189,7 +188,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
             }
         });
 
-        return LogedInUserID;
+        return LogedInUserIDCNIC;
     }
 
     private void init(){

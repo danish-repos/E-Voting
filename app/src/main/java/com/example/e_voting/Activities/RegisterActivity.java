@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button btnRegister;
     RadioGroup radioGroup;
-    EditText etFirstName , etLastName,  etEmail, etPassword, etConfirmPassword;
+    EditText etFirstName , etLastName,  etEmail, etPassword, etConfirmPassword, etCNICR;
     TextView tvLogin;
     int gender =0;
 
@@ -72,9 +72,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString();
                 String rePassword = etConfirmPassword.getText().toString();
+                String cnic = etCNICR.getText().toString().trim();
 
-                if (  firstName.isEmpty() || lastName.isEmpty() ||email.isEmpty() || password.isEmpty() || rePassword.isEmpty() ){
+                if (  firstName.isEmpty() || lastName.isEmpty() ||email.isEmpty() || password.isEmpty() || rePassword.isEmpty()
+                || cnic.isEmpty() ){
                     Toast.makeText(RegisterActivity.this, "Please fill out the form first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(cnic.length() !=13){
+                    Toast.makeText(RegisterActivity.this, "Please enter the correct cnic", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -97,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                RegisterUser(firstName, lastName, email , password, userGender);
+                RegisterUser(firstName, lastName, email , password, userGender, cnic);
                 finish();
             }
         });
@@ -121,12 +128,13 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        etCNICR = findViewById(R.id.etCNICR);
 
         tvLogin= findViewById(R.id.tvLogin);
 
     }
 
-    public void RegisterUser(String firstName, String lastName, String email, String password, String gender){
+    public void RegisterUser(String firstName, String lastName, String email, String password, String gender, String cnic){
 
         FirebaseDatabase.getInstance().getReference().child("Users")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -135,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                         boolean present = false;
 
                         for (DataSnapshot data : snapshot.getChildren()) {
-                            if (email.equals(data.child("Email").getValue(String.class))) {
+                            if (email.equals(data.child("Email").getValue(String.class)) || cnic.equals(data.child("Cnic").getValue(String.class))){
 
                                 present = true;
                                 break;
@@ -150,6 +158,7 @@ public class RegisterActivity extends AppCompatActivity {
                             singleLogin.put("Email", email);
                             singleLogin.put("Password", password);
                             singleLogin.put("Gender", gender);
+                            singleLogin.put("Cnic", cnic);
                             singleLogin.put("isLogin", false);
                             singleLogin.put("isAdmin", false);
 
@@ -157,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(RegisterActivity.this, "Added!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Registered!", Toast.LENGTH_SHORT).show();
 
                                         }
                                     })
