@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Before Signing in, you have to agree to the Terms and Conditions first."
+                    android:text="@string/before_signing_in_you_have_to_agree_to_the_terms_and_conditions_first"
                     android:textColor="@color/black" />
 
                 <Button

@@ -79,6 +79,14 @@ public class LogInActivity extends AppCompatActivity {
                 radioButton = 1;
             }
         });
+
+        btnTermsAndConditions.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startActivity(new Intent(LogInActivity.this, TermsAndConditions.class));
+                return false;
+            }
+        });
     }
 
     private void init()

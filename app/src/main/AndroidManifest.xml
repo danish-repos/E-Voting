@@ -17,6 +17,9 @@
         android:theme="@style/Theme.EVoting"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.TermsAndConditions"
+            android:exported="false" />
+        <activity
             android:name=".Activities.AddPostActivity"
             android:exported="false" />
         <activity
@@ -48,8 +51,8 @@
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activities.LogInActivity"
             android:exported="false" />

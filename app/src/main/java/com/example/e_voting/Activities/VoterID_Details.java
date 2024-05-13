@@ -150,8 +150,6 @@ public class VoterID_Details extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 String extractedText = extractTextFromImage(bitmap);
 
-
-                etCNIC_Number.setText(extractedText);
                 ivCNIC.setImageBitmap(bitmap);
 
             } catch (IOException e) {
