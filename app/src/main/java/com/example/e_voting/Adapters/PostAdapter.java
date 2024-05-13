@@ -32,6 +32,7 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
     String User;
     DatabaseReference reference;
     private final String KEY_USER_INTERACTIONS = "UserInteractions";
+    boolean User_AlreadyLiked, User_AlreadyDisliked;
 
     public PostAdapter(@NonNull FirebaseRecyclerOptions<Post> options, Context c) {
         super(options);
@@ -55,10 +56,10 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
         viewHolder.llLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean already_liked = viewHolder.ivLike.getColorFilter() != null;
-                boolean already_disliked = viewHolder.ivDislike.getColorFilter() != null;
+                User_AlreadyLiked = CheckIF_UserAlreadyLiked(getRef(i).getKey());
+                User_AlreadyDisliked = CheckIF_UserAlreadyDisliked(getRef(i).getKey());
 
-                if (already_liked) {
+                if (User_AlreadyLiked) {
                     remove_User_Like(getRef(i).getKey());
 
                     viewHolder.ivLike.clearColorFilter();
@@ -66,7 +67,7 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
 
 
                 }
-                else if (already_disliked) {
+                else if (User_AlreadyDisliked) {
                     remove_User_Dislike(getRef(i).getKey());
                     User_Like_Post(getRef(i).getKey());
 
@@ -92,10 +93,10 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
             @Override
             public void onClick(View v) {
 
-                boolean already_liked = viewHolder.ivLike.getColorFilter() != null;
-                boolean already_disliked = viewHolder.ivDislike.getColorFilter() != null;
+                User_AlreadyLiked = CheckIF_UserAlreadyLiked(getRef(i).getKey());
+                User_AlreadyDisliked = CheckIF_UserAlreadyDisliked(getRef(i).getKey());
 
-                if (already_liked) {
+                if (User_AlreadyLiked) {
 
                     remove_User_Like(getRef(i).getKey());
                     User_Dislike_Post(getRef(i).getKey());
@@ -108,7 +109,7 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
 
 
                 }
-                else if (already_disliked) {
+                else if (User_AlreadyDisliked) {
                     remove_User_Dislike(getRef(i).getKey());
 
                     viewHolder.ivDislike.clearColorFilter();
@@ -134,6 +135,47 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
         return new PostAdapter.ViewHolder(v);
     }
 
+    public boolean CheckIF_UserAlreadyLiked(String PostId) {
+        if (User != null) {
+            reference.child(KEY_USER_INTERACTIONS)
+                    .child(PostId)
+                    .child(User)
+                    .child("like").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User_AlreadyLiked = snapshot.getValue(Boolean.class);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
+        return User_AlreadyLiked;
+
+    }
+
+
+    public boolean CheckIF_UserAlreadyDisliked(String PostId) {
+        if (User != null) {
+            reference.child(KEY_USER_INTERACTIONS)
+                    .child(PostId)
+                    .child(User)
+                    .child("dislike").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User_AlreadyDisliked = snapshot.getValue(Boolean.class);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
+        return User_AlreadyDisliked;
+    }
 
     public void User_Like_Post(String PostID){
         String UserID = User;
@@ -377,6 +419,9 @@ public class PostAdapter extends FirebaseRecyclerAdapter<Post, PostAdapter.ViewH
 
             llLike = itemView.findViewById(R.id.llLike);
             llDislike = itemView.findViewById(R.id.llDislike);
+
+            User_AlreadyLiked = false;
+            User_AlreadyDisliked = false;
 
         }
     }

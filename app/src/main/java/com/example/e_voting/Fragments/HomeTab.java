@@ -31,8 +31,7 @@ import java.util.concurrent.TimeUnit;
 
 public class HomeTab extends Fragment {
 
-    SearchView scPlace;
-    Button btnSearchPlace;
+
     TextView tvCountdown;
 
 
@@ -52,8 +51,7 @@ public class HomeTab extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home_tab, container, false);
 
-        scPlace = view.findViewById(R.id.scPlace);
-        btnSearchPlace = view.findViewById(R.id.btnSearchPlace);
+
         tabLayoutHome = view.findViewById(R.id.tabLayoutHome);
 
         viewPagerHome = view.findViewById(R.id.viewPagerHome);
@@ -84,50 +82,50 @@ public class HomeTab extends Fragment {
         }, 0, ONE_SECOND);
 
 
-        scPlace.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+//        scPlace.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-        btnSearchPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(getContext(), btnSearchPlace);
-
-                popup.getMenuInflater().inflate(R.menu.dropdown_menu, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-
-                        int itemId = item.getItemId();
-
-                        if (itemId == R.id.option1) {
-
-                            return true;
-                        } else if (itemId == R.id.option2) {
-
-                            return true;
-                        } else if (itemId == R.id.option3) {
-
-                            return true;
-                        } else {
-                            return false;
-                        }
-
-                    }
-                });
-
-                popup.show();
-            }
-
-        });
+//        btnSearchPlace.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                PopupMenu popup = new PopupMenu(getContext(), btnSearchPlace);
+//
+//                popup.getMenuInflater().inflate(R.menu.dropdown_menu, popup.getMenu());
+//
+//                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    public boolean onMenuItemClick(MenuItem item) {
+//
+//                        int itemId = item.getItemId();
+//
+//                        if (itemId == R.id.option1) {
+//
+//                            return true;
+//                        } else if (itemId == R.id.option2) {
+//
+//                            return true;
+//                        } else if (itemId == R.id.option3) {
+//
+//                            return true;
+//                        } else {
+//                            return false;
+//                        }
+//
+//                    }
+//                });
+//
+//                popup.show();
+//            }
+//
+//        });
 
         tabLayoutHome.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

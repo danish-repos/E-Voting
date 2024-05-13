@@ -35,7 +35,6 @@ public class VoteTab extends Fragment {
     SearchView scCandidate;
     RecyclerView rvCandidatesVT;
     Button btnSearchPlaceVote;
-
     CandidateAdapterVote myAdapter;
 
     public VoteTab() {
