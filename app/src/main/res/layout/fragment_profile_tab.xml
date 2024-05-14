@@ -71,6 +71,8 @@
         app:layout_constraintTop_toBottomOf="@id/profileImageCardView" />
 
     <!-- Fragment Edit User Details -->
+
+    <!-- CardView for Logout Button -->
     <fragment
         android:id="@+id/editUserFrag"
         class="com.example.e_voting.Fragments.EditUserDetailsFragment"
@@ -80,11 +82,12 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/logoutCardView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEditProfile"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout="@layout/fragment_edit_user_details" />
 
-    <!-- CardView for Logout Button -->
     <androidx.cardview.widget.CardView
         android:id="@+id/logoutCardView"
         android:layout_width="0dp"

@@ -45,7 +45,7 @@ public class ProfileTab extends Fragment {
     Fragment editUserFrag;
     View editUserView;
 
-    String firstName, lastName, email, oldPassword;
+    String firstName, lastName, email;
     Context context;
 
     public ProfileTab() {
@@ -107,6 +107,11 @@ public class ProfileTab extends Fragment {
 
                 if(firstName.isEmpty() || lastName.isEmpty() ||email.isEmpty() ||oldPassword.isEmpty() ||newPassword.isEmpty()){
                     Toast.makeText(context, "Can't leave anything empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(oldPassword.equals(newPassword)){
+                    Toast.makeText(context  , "Passwords cannot be same!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

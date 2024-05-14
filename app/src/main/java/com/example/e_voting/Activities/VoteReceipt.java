@@ -49,12 +49,7 @@ public class VoteReceipt extends AppCompatActivity {
             }
         });
 
-        tvDownloadReceipt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
 
 
@@ -66,7 +61,7 @@ public class VoteReceipt extends AppCompatActivity {
         ivCandidate_Photo_R = findViewById(R.id.ivCandidate_Photo_R);
         tvCandidateName_R = findViewById(R.id.tvCandidateName_R);
         tvCandidateParty_R = findViewById(R.id.tvCandidateParty_R);
-        tvDownloadReceipt = findViewById(R.id.tvDownloadReceipt);
+
         btnBack_to_HomeScreen = findViewById(R.id.btnBack_to_HomeScreen);
     }
 }
