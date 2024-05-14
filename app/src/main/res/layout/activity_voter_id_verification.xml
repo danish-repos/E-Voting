@@ -105,7 +105,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:hint="Date of Birth"
+            android:hint="Date of Birth (dd-mm-yyyy)"
             android:inputType="date"
             android:textSize="14sp" />
 

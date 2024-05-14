@@ -103,7 +103,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(VoteCandidateActivity.this, "You have already voted in '" + votedAlreadyType + "' type", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VoteCandidateActivity.this, "You have already voted in '" + type + "' type", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -140,6 +140,7 @@ public class VoteCandidateActivity extends AppCompatActivity {
 
                                             if (cnic.equals(LogedInUserIDCNIC) && Objects.equals(votedAlreadyType, type))
                                             {
+                                                Log.d("",votedAlreadyType+"   "+ type);
                                                 UseralreadyVoted = true;
                                             }
 

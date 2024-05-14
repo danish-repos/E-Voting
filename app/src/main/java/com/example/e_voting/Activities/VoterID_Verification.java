@@ -55,6 +55,8 @@ public class VoterID_Verification extends AppCompatActivity {
                 String cnic = etVoterIdNumber.getText().toString().trim();
                 String address = etVoterAddress.getText().toString().trim();
 
+
+
                 if (name.isEmpty() || dob.isEmpty() || cnic.isEmpty() || address.isEmpty()){
                     Toast.makeText(VoterID_Verification.this, "Please fill out all the fields!", Toast.LENGTH_SHORT).show();
                     return;
